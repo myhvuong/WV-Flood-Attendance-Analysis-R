@@ -33,3 +33,42 @@ process_county_data <- function(county_name, path) {
 }
 
 all_attendance_data <- map_df(counties, process_county_data, path = base_path) 
+
+
+# --- Precipitation Data ---
+
+# Function to process precipitation data 
+process_precip_data <- function(county_name, data_path) {
+  files <- list.files(path = data_path, pattern = "*.csv", full.names = TRUE, recursive = FALSE)
+  
+  county_data <- lapply(files, function(file_path) {
+    read.csv(file_path, stringsAsFactors = FALSE) %>%
+      select(DATE, PRCP) %>%
+      
+      # Creating a column that is 4 months later
+      # this helps filter data that falls within a school year (Sep-May)
+      mutate(DATE = as.Date(DATE),
+             LATERDATE = DATE %m+% months(4)) %>% 
+      
+      # LATERDATE 1-9 should indicate Sept through May 
+      filter(month(LATERDATE) %in% 1:9) %>%
+      
+      # LATERDATE = 2004 is equivalent to school year 2003-2004
+      filter(year(LATERDATE) %in% 2004:2021) %>%
+      mutate(year = year(LATERDATE)) %>%
+      group_by(year) %>%
+      summarise(prcp = sum(PRCP, na.rm = TRUE), .groups = "drop") %>% 
+      mutate(county = county_name)
+  }) %>%
+    bind_rows() %>%
+    group_by(year, county) %>%
+    summarise(average_precipitation = mean(prcp, na.rm = TRUE), .groups = "drop") %>% 
+    select(county, year, average_precipitation)
+  
+  return(county_data) 
+}
+
+data_paths <- setNames(file.path(base_path, counties), counties) 
+
+all_precipitation_data <- imap(data_paths, ~ process_precip_data(.y, .x)) %>% 
+  bind_rows()
