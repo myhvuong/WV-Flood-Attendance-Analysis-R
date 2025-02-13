@@ -9,7 +9,8 @@ data <- read.csv(paste0(base_path, "/flood_attnd_prcp.csv"))
 
 # Scatter Plot of Attendance vs. Precipitation
 p1 <- ggplot(data, aes(x = average_precipitation, y = attendance)) +
-  geom_point(alpha = 0.5) +  # Use semi-transparent points
+  geom_point(alpha = 0.5) +  
+  geom_smooth(method = "lm", color = "royalblue4", fill = "royalblue4", se = FALSE) +
   labs(title = "Attendance vs. Precipitation",
        x = "Precipitation (mm)",
        y = "Attendance Rate (%)") +
