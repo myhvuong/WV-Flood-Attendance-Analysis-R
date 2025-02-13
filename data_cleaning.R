@@ -72,3 +72,19 @@ data_paths <- setNames(file.path(base_path, counties), counties)
 
 all_precipitation_data <- imap(data_paths, ~ process_precip_data(.y, .x)) %>% 
   bind_rows()
+
+
+# --- FEMA Flood Incident Data ---
+
+WV_FEMA_path <- file.path(base_path, "DisasterDeclarationsSummaries.csv")
+WV_FEMA <- read.csv(WV_FEMA_path, stringsAsFactors = FALSE) %>%
+  filter(state == "WV", incidentType == "Flood") %>%
+  mutate(DATE = as.Date(incidentBeginDate)) %>% 
+  filter(year(DATE) %in% 2003:2021) %>% 
+  filter(!(month(DATE) %in% 6:9)) %>%  # we need to filter for months within a school year
+  mutate(designatedArea = gsub(" \\(County\\)", "", designatedArea)) %>% 
+  filter(designatedArea %in% counties) %>% 
+  count(designatedArea, year = year(DATE)) %>% 
+  complete(designatedArea, year, fill = list(n = 0)) %>% 
+  rename(flood_incidents = n, county = designatedArea) %>% 
+  select(county, year, flood_incidents) 
