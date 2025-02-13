@@ -88,3 +88,18 @@ WV_FEMA <- read.csv(WV_FEMA_path, stringsAsFactors = FALSE) %>%
   complete(designatedArea, year, fill = list(n = 0)) %>% 
   rename(flood_incidents = n, county = designatedArea) %>% 
   select(county, year, flood_incidents) 
+
+
+# --- Merge All Data ---
+# Merge precipitation and flood incident data
+prcp_flood <- all_precipitation_data %>%
+  left_join(WV_FEMA, by = c("county", "year")) %>%
+  mutate(flood_incidents = ifelse(is.na(flood_incidents), 0, flood_incidents),
+         school_year = paste0(year - 1, "-", year)) %>%
+  select(-year)
+
+final_data <- prcp_flood %>%
+  full_join(all_attendance_data, by = c("county", "school_year")) %>%
+  arrange(county, school_year)
+
+write.csv(final_data, file = paste0(base_path, "/", "flood_attnd_prcp.csv"), row.names = FALSE)
