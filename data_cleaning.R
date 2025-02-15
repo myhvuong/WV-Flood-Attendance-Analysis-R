@@ -102,4 +102,5 @@ final_data <- prcp_flood %>%
   full_join(all_attendance_data, by = c("county", "school_year")) %>%
   arrange(county, school_year)
 
+# Export and save the final dataframe
 write.csv(final_data, file = paste0(base_path, "/", "flood_attnd_prcp.csv"), row.names = FALSE)
