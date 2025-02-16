@@ -31,7 +31,7 @@ p2 <- ggplot(data, aes(x = flood_incidents, y = attendance)) +
   theme(plot.background = element_rect(fill = "white"))
 
 ggsave(filename = paste0(plot_path, "/attendance_vs_flood_counts.png"),
-       plot = p1, width = 10, height = 6, dpi = 300)
+       plot = p2, width = 10, height = 6, dpi = 300)
 
 # Bar Chart of Average Attendance by County
 p3 <- ggplot(data, aes(x = county, y = attendance)) +
@@ -42,7 +42,7 @@ p3 <- ggplot(data, aes(x = county, y = attendance)) +
   theme_minimal() +
   theme(plot.background = element_rect(fill = "white"))
 
-ggsave(filename = paste0(plot_path, "/average_attendance_by_county.png"), plot = p2, width = 10, height = 6, dpi = 300)
+ggsave(filename = paste0(plot_path, "/average_attendance_by_county.png"), plot = p3, width = 10, height = 6, dpi = 300)
 
 # Line Graph of Attendance Over Time
 p4 <- ggplot(data, aes(x = school_year, y = attendance, group = county, color = county)) +
@@ -55,4 +55,4 @@ p4 <- ggplot(data, aes(x = school_year, y = attendance, group = county, color = 
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) + # rotate for readability
   theme(plot.background = element_rect(fill = "white"))
 
-ggsave(filename = paste0(plot_path, "/attendance_over_time_by_county.png"), plot = p3, width = 10, height = 6, dpi = 300)
+ggsave(filename = paste0(plot_path, "/attendance_over_time_by_county.png"), plot = p4, width = 10, height = 6, dpi = 300)
