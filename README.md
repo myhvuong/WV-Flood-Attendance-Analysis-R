@@ -8,7 +8,7 @@ My analysis combines attendance data from the WV Department of Education with pr
 
 ### Visual Inspections
 
-A preliminary visual inspection of the data reveals potential insights. The scatterplot of attendance versus percipitation rate (see `attendance_vs_precipitation.png` in the Visualizations repository) shows a relatively flat best-fit line, suggesting a week or non-existent linear relationship. In contrast, plots involving flood incidents counts (also available in the Visualizations repository) appear to show a more pronounced negative relationship with attendnace. These visual observations are further investigated through statistical modeling.
+A preliminary visual inspection of the data reveals potential insights. The scatterplot of attendance versus percipitation rate (see `attendance_vs_precipitation.png` in the Visualizations repository) shows a relatively flat best-fit line, suggesting a week or non-existent linear relationship. In contrast, plots involving flood incidents counts (also available in the Visualizations repository) appear to show a more pronounced negative relationship with attendance. These visual observations are further investigated through statistical modeling.
 
 ### Results
 
