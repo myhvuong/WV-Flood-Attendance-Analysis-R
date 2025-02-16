@@ -1,4 +1,4 @@
-# WV-Flood-Attendance-Analysis-R
+x# WV-Flood-Attendance-Analysis-R
 
 While the financial impact natural disasters is well-documented, I felt there was a gap in understanding the broader, non-market effects. I wanted to explore these less tangible consequences, thus choosing to study how flooding in West Virginia, a flood-prone state, affects school attendance. This project aims to shed light on these often overlooked impacts.
 
@@ -12,7 +12,7 @@ A preliminary visual inspection of the data reveals potential insights. The scat
 
 ### Results
 
-Using precipitation and flood incident counts as indicators of flooding, I found a negative relationship between flood incidents and school attendance. The statistical analysis confirmed the visual observation from `attendacne-vs_precipitation.png` that precipitation along does not have a significant effect. However, the interaction term suggests that higher precipitation levels exacerbate the negative impact of flood incidents on attendance. 
+Using precipitation and flood incident counts as indicators of flooding, I found a negative relationship between flood incidents and school attendance. The statistical analysis confirmed the visual observation from `attendacne-vs_precipitation.png` that precipitation alone does not have a significant effect. However, the interaction term suggests that higher precipitation levels exacerbate the negative impact of flood incidents on attendance. 
 
 ### Why These Results Make Sense
 
