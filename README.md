@@ -12,7 +12,7 @@ A preliminary visual inspection of the data reveals potential insights. The scat
 
 ### Results
 
-Using precipitation and flood incident counts as indicators of flooding, I found a negative relationship between flood incidents and school attendance. The statistical analysis confirmed the visual observation from `attendacne-vs_precipitation.png` that precipitation alone does not have a significant effect. However, the interaction term suggests that higher precipitation levels exacerbate the negative impact of flood incidents on attendance. 
+Using precipitation and flood incident counts as indicators of flooding, I found a negative relationship between flood incidents and school attendance. The statistical analysis confirmed the visual observation from `attendance-vs_precipitation.png` that precipitation alone does not have a significant effect. However, the interaction term suggests that higher precipitation levels exacerbate the negative impact of flood incidents on attendance. 
 
 ### Why These Results Make Sense
 
